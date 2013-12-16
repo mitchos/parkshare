@@ -1,0 +1,16 @@
+<template name="register">
+  <div class="container">
+    <form class="form-signin" role="form" id="registerForm" action="action">
+      <h2 class="form-signin-heading">Register</h2>
+      <p>Please complete the form below to join ParkShare</p>
+      <input type="text" class="form-control" placeholder="First Name" id="firstName" autofocus>
+      <input type="text" class="form-control" placeholder="Last Name" id="lastName">
+      <input type="email" class="form-control" placeholder="Email address" id="email" required >
+      <div class="form-group">
+        <input type="password" class="form-control" placeholder="Password" id="password" required>
+        <input type="password" class="form-control" placeholder="Confirm Password" id="passwordConfirm" required>
+      </div>
+      <button id="createAccount" class="btn btn-lg btn-success btn-block" type="submit">Register</button>
+    </form>
+  </div> <!-- /container -->
+</template>
