@@ -1,0 +1,14 @@
+<template name="parksList">
+    <div class="parks">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Address</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                </tr>
+            </thead>
+            <tbody>{{#each parks}} {{> parkItem}} {{/each}}</tbody>
+        </table>
+    </div>
+</template>

@@ -1,0 +1,22 @@
+<template name="maps">
+    <div class="row">
+        <!-- Button trigger modal -->
+        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#parkModal">Add Park</button>
+    </div>
+        {{>parkForm}}
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="map">
+                <div id="map-canvas"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="geocode">{{>geocode}}</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">{{>parksList}}</div>
+    </div>
+</template>

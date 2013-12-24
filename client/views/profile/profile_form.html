@@ -1,0 +1,122 @@
+<template name="profileForm">
+    <form class="form-horizontal" role="form" id="editProfile" action="action">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Basic</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="form-group">
+                        <label for="firstName" class="col-sm-2 control-label">First Name</label>
+                        <div class="col-xs-2">
+                            <input type="text" class="form-control" id="firstName" placeholder="First Name"
+                            value="{{currentUser.profile.firstName}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="lastName" class="col-sm-2 control-label">Last Name</label>
+                        <div class="col-xs-2">
+                            <input type="text" class="form-control" id="lastName" placeholder="Last Name"
+                            value="{{currentUser.profile.lastName}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="email" class="col-sm-2 control-label">Email</label>
+                        <div class="col-xs-4">
+                            <input type="email" class="form-control" id="email" placeholder="email@example.com"
+                            value="{{currentUser.email}}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Address</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="form-group">
+                        <label for="streetNumber" class="col-sm-2 control-label">Street Number</label>
+                        <div class="col-xs-2">
+                            <input type="text" class="form-control" id="streetNumber" placeholder="1/1-7"
+                            value="{{currentUser.profile.streetNumber}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="streetName" class="col-sm-2 control-label">Street Name</label>
+                        <div class="col-xs-2">
+                            <input type="text" class="form-control" id="streetName" placeholder="Example"
+                            value="{{currentUser.profile.streetName}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="streetType" class="col-sm-2 control-label">Street Type</label>
+                        <div class="col-xs-1">
+                            <input type="text" class="form-control" id="streetType" placeholder="St"
+                            value="{{currentUser.profile.streetType}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="suburb" class="col-sm-2 control-label">Suburb</label>
+                        <div class="col-xs-2">
+                            <input type="text" class="form-control" id="suburb" placeholder="Sydney"
+                            value="{{currentUser.profile.suburb}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="state" class="col-sm-2 control-label">State</label>
+                        <div class="col-xs-2">
+                            <select class="form-control" value="{{currentUser.profile.state}}" id="state" name="state">
+                                <option value="ACT">ACT</option>
+                                <option value="NSW">NSW</option>
+                                <option value="NT">NT</option>
+                                <option value="QLD">QLD</option>
+                                <option value="SA">SA</option>
+                                <option value="TAS">TAS</option>
+                                <option value="WA">WA</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="postCode" class="col-sm-2 control-label">Post Code</label>
+                        <div class="col-xs-2">
+                            <input type="text" class="form-control" id="postCode" placeholder="2000"
+                            value="{{currentUser.profile.postCode}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="country" class="col-sm-2 control-label">Country</label>
+                        <div class="col-xs-2">
+                            <input type="text" class="form-control" id="country" placeholder="Australia"
+                            value="{{currentUser.profile.country}}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">Update Profile</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</template>

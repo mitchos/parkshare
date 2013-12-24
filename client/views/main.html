@@ -1,9 +1,7 @@
 <template name="main">
-  {{#if currentUser}}
-    {{>home}}
-  {{else}}
-    {{>login}}
-{{/if}}
+    {{#if currentUser}} 
+        {{>maps}} 
+    {{else}} 
+        {{>login}} 
+    {{/if}}
 </template>
-
-
