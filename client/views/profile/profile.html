@@ -1,32 +1,48 @@
-<template name="profileNav">
-    <ul class="nav nav-pills nav-justified">
-        <li>
-            <a href="profile">Profile Summary</a>
-        </li>
-        <li class="active">
-            <a href="editProfile">Edit Profile</a>
-        </li>
-        <li>
-            <a href="addPark">Add Park</a>
-        </li>
-    </ul>
-</template>
-
 <template name="profile">
-    <div id="profile">{{>profileNav}}
+    <div id="profile">
+        <ul class="nav nav-pills nav-justified">
+            <li class="active">
+                <a href="profile">Profile Summary</a>
+            </li>
+            <li>
+                <a href="editProfile">Edit Profile</a>
+            </li>
+            <li>
+                <a href="addPark">Add Park</a>
+            </li>
+        </ul>
         <h3>Profile Summary</h3>{{>profileSummary}}</div>
 </template>
-
 <template name="editProfile">
-    <div id="profile">{{>profileNav}}></ul>
+    <div id="profile">
+        <ul class="nav nav-pills nav-justified">
+            <li>
+                <a href="profile">Profile Summary</a>
+            </li>
+            <li class="active">
+                <a href="editProfile">Edit Profile</a>
+            </li>
+            <li>
+                <a href="addPark">Add Park</a>
+            </li>
+        </ul>
         <h3>Edit Profile</h3>{{>profileForm}}</div>
 </template>
-
 <template name="addPark">
-    <div id="profile">{{>profileNav}}
+    <div id="profile">
+        <ul class="nav nav-pills nav-justified">
+            <li>
+                <a href="profile">Profile Summary</a>
+            </li>
+            <li>
+                <a href="editProfile">Edit Profile</a>
+            </li>
+            <li class="active">
+                <a href="addPark">Add Park</a>
+            </li>
+        </ul>
         <h3>Add Park</h3>{{>addParkForm}}</div>
 </template>
-
 <template name="addParkForm">
     <form class="form-horizontal" role="form" id="addPark" action="action">
         <div class="row">
