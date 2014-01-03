@@ -1,12 +1,11 @@
 /* global google Template Session Deps Parks infowindow*/
 Template.maps.rendered = function() {
-
-
+    // Initialise the map if the page is loaded for the first time
     if (!Session.get('map')) gmaps.initialise();
 
     // Autorun function to render all points in the Parks collection on the map
     Deps.autorun(function() {
-        console.log('Fetching locations');
+        console.log('[+] Fetching locations');
         var Location = Parks.find().fetch();
         gmaps.addMarker(Location);
 
@@ -19,61 +18,58 @@ Template.maps.destroyed = function() {
 };
 
 Template.maps.events({
-    'submit #geocode': function(e) {
-        e.preventDefault();
 
-        var address = document.getElementById("address").value;
-        geocoder.geocode({
-            'address': address
-        }, function(results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-                gmaps.map.setCenter(results[0].geometry.location);
-                Parks.insert({
-                    address: address,
-                    lat: results[0].geometry.location.lat(),
-                    lng: results[0].geometry.location.lng()
-                });
-            }
-            else {
-                alert("Geocode was not successful for the following reason: " + status);
-            }
-        });
-    },
-
+    // Called when new park is added from main map page
     'submit #addPark': function(e) {
         e.preventDefault();
 
         console.log("Running events function for ParkForm");
-        var streetNumber = document.getElementById("streetNumber").value,
-            streetName = document.getElementById("streetName").value,
-            streetType = document.getElementById("streetType").value,
-            suburb = document.getElementById("suburb").value,
-            postCode = document.getElementById("postCode").value,
-            state = document.getElementById("state").value,
-            country = document.getElementById("country").value,
-            userId = Meteor.userId(),
-            address = streetNumber + " " + streetName + " " + streetType + " " + suburb + " " + state + " " + postCode + " " + country;
 
-        console.log(address);
+        var results = null;
+
+        // Store form variables to send to Parks collection
+        var park = {
+            streetNumber: document.getElementById("streetNumber").value,
+            streetName: document.getElementById("streetName").value,
+            streetType: document.getElementById("streetType").value,
+            suburb: document.getElementById("suburb").value,
+            postCode: document.getElementById("postCode").value,
+            state: document.getElementById("state").value,
+            country: document.getElementById("country").value,
+        };
+        park.address = park.streetNumber + " " + park.streetName + " " + park.streetType + " " + park.suburb + " " + park.state + " " + park.postCode + " " + park.country;
+
+        // Call geocoder to get lat/long from address
         geocoder.geocode({
-            'address': address
+            address: park.address,
+            region: 'au',
+            componentRestrictions: {
+                country: 'au'
+            }
         }, function(results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
-                gmaps.map.setCenter(results[0].geometry.location);
-                Parks.insert({
-                    userId: userId,
-                    address: address,
-                    lat: results[0].geometry.location.lat(),
-                    lng: results[0].geometry.location.lng()
+                park.lat = results[0].geometry.location.lat();
+                park.lng = results[0].geometry.location.lng();
+                park.address = results[0].formatted_address;
+                // Insert park via Meteor Method in parks.js
+                Meteor.call('park', park, results, function(error, id) {
+                    if (error) return alert(error.reason);
                 });
-                console.log("Stored address successfully");
-
-                $('#parkModal').modal('hide');
+                return results;
             }
             else {
                 alert("Geocode was not successful for the following reason: " + status);
             }
         });
+
+        console.log("Stored address successfully");
+
+        // Close the modal
+        $('#parkModal').modal('hide');
+
+        // Set the center of the map to geocoded result
+        gmaps.map.setCenter(new google.maps.LatLng(park.lat, park.lng));
+        gmaps.map.setZoom(16);
 
     }
 });

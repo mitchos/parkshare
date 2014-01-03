@@ -1,4 +1,5 @@
 <template name="profileSummary">
+    <p><img class="img-rounded" src="{{currentUser.profile.picture}}"></p>
     <p>Name: {{currentUser.profile.firstName}} {{currentUser.profile.lastName}}</p>
     <p>Address: {{currentUser.profile.streetNumber}} {{currentUser.profile.streetName}} {{currentUser.profile.streetType}}, {{currentUser.profile.suburb}}, {{currentUser.profile.postCode}}, {{currentUser.profile.state}}</p>
     <p>Phone Number: {{phNumber}}</p>

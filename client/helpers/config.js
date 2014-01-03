@@ -1,7 +1,7 @@
 Accounts.ui.config({
+
     requestPermissions: {
-        facebook: ['email', 'user_friends', 'user_location', 'user_hometown' ],
+        facebook: ['email', 'user_hometown', 'user_location'],
     },
-    
-    passwordSignupFields: 'USERNAME_ONLY'
-});
+        passwordSignupFields: 'USERNAME_ONLY'
+    });
