@@ -1,9 +1,5 @@
 
-body {
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: #eee;
-}
+
 
 .form-signin {
   max-width: 330px;
@@ -39,6 +35,4 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-#profile{
-    margin-top: 50px;
-}
+

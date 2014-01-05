@@ -21,7 +21,8 @@ Template.register.events({
                 suburb: "",
                 state: "",
                 postCode: "",
-                country: ""
+                country: "",
+                picture: ""
             }
         }, function(err) {
             if (err) {

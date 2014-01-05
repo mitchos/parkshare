@@ -17,6 +17,12 @@ Template.maps.destroyed = function() {
     Session.set('map', false);
 };
 
+Template.maps.helpers({
+    parkCount: function() {
+        return Parks.find().count();
+    }
+});
+
 Template.maps.events({
 
     // Called when new park is added from main map page
@@ -48,17 +54,34 @@ Template.maps.events({
             }
         }, function(results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
+                // Add lat and long to our object so we can use them later
                 park.lat = results[0].geometry.location.lat();
                 park.lng = results[0].geometry.location.lng();
+                // Change our address to a nicer gmaps formatted version
                 park.address = results[0].formatted_address;
                 // Insert park via Meteor Method in parks.js
-                Meteor.call('park', park, results, function(error, id) {
-                    if (error) return alert(error.reason);
+                Meteor.call('park', park, function(error, id) {
+                    if (error) {
+                        // display the rror
+                        throwError(error.reason);
+                        if (error.error === 302) Router.go('/', {
+                            _id: error.details
+                        });
+                    }
+                    else {
+                        Router.go('/', {
+                            _id: id
+                        });
+                    }
+
                 });
-                return results;
+                // Set the center of the map to geocoded result and zoom in
+                gmaps.map.setCenter(new google.maps.LatLng(park.lat, park.lng));
+                gmaps.map.setZoom(16);
+                return park;
             }
             else {
-                alert("Geocode was not successful for the following reason: " + status);
+                throw new Meteor.Error(422, status);
             }
         });
 
@@ -66,10 +89,6 @@ Template.maps.events({
 
         // Close the modal
         $('#parkModal').modal('hide');
-
-        // Set the center of the map to geocoded result
-        gmaps.map.setCenter(new google.maps.LatLng(park.lat, park.lng));
-        gmaps.map.setZoom(16);
 
     }
 });

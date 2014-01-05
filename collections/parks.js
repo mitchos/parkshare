@@ -3,7 +3,7 @@ Parks = new Meteor.Collection('parks');
 
 Meteor.methods({
     park: function(parkAttributes) {
-        
+
         var user = Meteor.user(),
             parkWithSameAddress = Parks.findOne({
                 address: parkAttributes.address
@@ -16,7 +16,7 @@ Meteor.methods({
         if (!parkAttributes.address) throw new Meteor.Error(422, 'Please fill in an address');
 
         // check that there are no previous posts with the same link
-        if (parkAttributes.url && parkWithSameAddress) {
+        if (parkAttributes.address && parkWithSameAddress) {
             throw new Meteor.Error(302, 'This park has already been listed',
             parkWithSameAddress._id);
         }
@@ -24,12 +24,18 @@ Meteor.methods({
         // pick out the whitelisted keys
         var park = _.extend(_.pick(parkAttributes, 'address', 'lat', 'lng'), {
             userId: user._id,
-            owner: user.name,
+            owner: user.profile.name,
             submitted: new Date().getTime()
         });
 
         var parkId = Parks.insert(park);
 
         return parkId;
+    },
+    deletePark: function(parkId) {
+
+        var parkDeleted = Parks.remove(parkId);
+
+        return parkDeleted;
     }
 });
