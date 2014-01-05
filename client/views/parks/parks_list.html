@@ -1,0 +1,27 @@
+<template name="recentParks">
+    <div class="parks">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Address</th>
+                    <th>Owner</th>
+                </tr>
+            </thead>
+            <tbody>{{#each recentParks}} {{> parkItem}} {{/each}}</tbody>
+        </table>
+    </div>
+</template>
+
+<template name="parksByOwner">
+    <div class="parks">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Address</th>
+                    <th>Owner</th>
+                </tr>
+            </thead>
+            <tbody>{{#each parksByOwner}} {{> parkItem}} {{/each}}</tbody>
+        </table>
+    </div>
+</template>
