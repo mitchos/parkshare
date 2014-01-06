@@ -1,6 +1,17 @@
 <template name="profileSummary">
-    <p><img class="img-rounded" src="{{currentUser.profile.picture}}"></p>
-    <p>Name: {{currentUser.profile.firstName}} {{currentUser.profile.lastName}}</p>
-    <p>Address: {{currentUser.profile.streetNumber}} {{currentUser.profile.streetName}} {{currentUser.profile.streetType}}, {{currentUser.profile.suburb}}, {{currentUser.profile.postCode}}, {{currentUser.profile.state}}</p>
-    <p>Phone Number: {{phNumber}}</p>
+    <div class="row">
+        <div class="col-md-4">
+            <p>
+                <img class="img-rounded" src="{{currentUser.profile.picture}}">
+            </p>
+            <p>Name: {{currentUser.profile.firstName}} {{currentUser.profile.lastName}}</p>
+            <p>Address: {{currentUser.profile.address}}</p>
+            <p>Phone Number: {{phNumber}}</p>
+        </div>
+        <div class="col-md-4">
+            <button type="button" class="btn btn-success addService" data-service="facebook">Add Facebook</button>
+            <button type="button" class="btn btn-success addService" data-service="google">Add Google</button>
+            <button type="button" class="btn btn-success addService" data-service="email">Add Email</button>
+        </div>
+    </div>
 </template>

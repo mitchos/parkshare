@@ -26,7 +26,7 @@ Template.register.events({
             }
         }, function(err) {
             if (err) {
-                console.log('Couldn\'t create account');
+                console.log('Couldn\'t create account: ' + err);
             }
             else {
                 Router.go('main');

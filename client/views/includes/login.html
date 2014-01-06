@@ -1,21 +1,24 @@
 <template name="login">
-<div class="container">
-    <form class="form-signin" role="form" id="loginForm" action="action">
-      <h2 class="form-signin-heading">Please sign in</h2>
-      <input type="text" class="form-control" placeholder="Email address" id="loginEmail" required autofocus>
-      <input type="password" class="form-control" placeholder="Password" id="loginPassword" required>
-      <label class="checkbox">
-        <input type="checkbox" value="remember-me"> Remember me
-      </label>
-      <p>Not a member?<a href="register"> Register here</a></p>
-      <button class="btn btn-lg btn-primary btn-block" type="submit" id="loginButton">Sign in</button>
-      <a href="#" id="fbLogin"><img src="fblogin.png" height="75%" width="75%"></a>
-    </form>
-    
-    <br>
-    <br>
-    <div>
-
+    <div class="container">
+        <form class="form-signin" role="form" id="loginForm" action="action">
+            <h2 class="form-signin-heading">Please sign in</h2>
+            <input type="text" class="form-control" placeholder="Email address"
+            id="loginEmail" required autofocus>
+            <input type="password" class="form-control" placeholder="Password" id="loginPassword"
+            required>
+            <label class="checkbox">
+                <input type="checkbox" value="remember-me">Remember me</label>
+            <p>Not a member?
+                <a href="register"> Register here</a>
+            </p>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" id="loginButton">Sign in</button>
+            <a href="#" id="fbLogin"><img src="fblogin.png" height="75%" width="75%"></a>
+        </form>
+        <br>
+        <br>
+        <div>
+            {{loginButtons}}
+        </div>
     </div>
-  </div> <!-- /container -->
+    <!-- /container -->
 </template>
