@@ -1,6 +1,6 @@
 /* global Marker google  */
 gmaps = {
-    
+
     // Initialises all map settings when page is loaded
     initialise: function() {
         console.log("[+] Intializing Google Maps...");
@@ -10,8 +10,8 @@ gmaps = {
             zoom: 4,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             styles: greenStyle
-        },
-        autocomplete; // Google maps autocomplete
+        };
+
 
         // Set map global variables
         map = new google.maps.Map(document.getElementById("map-canvas"),
@@ -22,15 +22,10 @@ gmaps = {
 
         // Create the autocomplete object, restricting the search
         // to geographical location types.
-        autocomplete = new google.maps.places.Autocomplete(
-        /** @type {HTMLInputElement} */ (document.getElementById('autocomplete')), {
-            types: ['geocode']
-        });
+
         // When the user selects an address from the dropdown,
         // populate the address fields in the form.
-        google.maps.event.addListener(autocomplete, 'place_changed', function() {
-            place = autocomplete.getPlace();
-        });
+
         /* Check if browser supports geolocation then ask to add users current location
          to center of the map*/
         if (navigator.geolocation) {
@@ -44,7 +39,7 @@ gmaps = {
 
         Session.set('map', true);
     },
-    
+
     // Add marker to the map
     addMarker: function(Location) {
 
@@ -70,7 +65,7 @@ gmaps = {
             });
         }
     },
-    
+
     // Autocomplete function to geolocate the address given
     geolocate: function() {
         if (navigator.geolocation) {
@@ -83,5 +78,16 @@ gmaps = {
         }
     },
 
+    watchAutocomplete: function(input) {
+        var autocomplete;
+        autocomplete = new google.maps.places.Autocomplete(
+        /** @type {HTMLInputElement} */ (document.getElementById(input)), {
+            types: ['geocode']
+        });
+        google.maps.event.addListener(autocomplete, 'place_changed', function() {
+            place = autocomplete.getPlace();
+        });
 
+        console.log(autocomplete);
+    }
 };

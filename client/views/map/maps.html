@@ -2,12 +2,22 @@
     <div class="row">
         <form class="form-horizontal" role="form" id="addPark" action="action">
             <div class="col-md-4">
-                <div id="locationField" class="form-group">
-                    <input type="text" class="form-control" id="autocomplete" placeholder="Enter Address">
+                <div id="addParkField" class="form-group">
+                    <input type="text" class="form-control" id="addParkInput" placeholder="Enter Address">
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-2">
                 <button type="submit" class="btn btn-primary">Add Park</button>
+            </div>
+        </form>
+                <form class="form-horizontal" role="form" id="findPark" action="action">
+            <div class="col-md-4">
+                <div id="findParkField" class="form-group">
+                    <input type="text" class="form-control" id="findParkInput" placeholder="Enter Address">
+                </div>
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary">Find Park</button>
             </div>
         </form>
     </div>
@@ -18,14 +28,6 @@
                 <div id="map-canvas"></div>
             {{/constant}}    
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-8">
-            <!-- Button trigger modal -->
-            <p>
-                <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#parkModal">Add Park</button>
-            </p>
         </div>
     </div>
     <div class="row">

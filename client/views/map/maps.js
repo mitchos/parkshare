@@ -1,6 +1,7 @@
 /* global google Template Session Deps Parks infowindow*/
 
 Template.maps.rendered = function() {
+
     // Initialise the map if the page is loaded for the first time
     if (!Session.get('map')) gmaps.initialise();
 
@@ -30,9 +31,15 @@ Template.maps.helpers({
 /*********************************
  *  Event handlers for maps.html *
  *********************************/
- 
-Template.maps.events({
 
+Template.maps.events({
+    'focus #findParkInput': function(e) {
+        gmaps.watchAutocomplete('findParkInput');
+    },
+    'focus #addParkInput': function(e) {
+        
+        gmaps.watchAutocomplete('addParkInput');
+    },
     'submit #addPark': function(e) {
         e.preventDefault();
         console.log("Running events function for ParkForm");
@@ -62,9 +69,10 @@ Template.maps.events({
             return park;
 
         });
-        
+
         console.log(park);
         console.log("Stored address successfully");
+        autocomplete = null;
 
     }
 });
