@@ -36,5 +36,9 @@ Template.login.events({
     'click #fbLogin': function(e, t) {
         e.preventDefault();
         Meteor.loginWithFacebook();
+    },
+    'click #googleLogin': function(e, t){
+        e.preventDefault();
+        Meteor.loginWithGoogle();
     }
 });

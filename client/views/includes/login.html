@@ -1,24 +1,31 @@
 <template name="login">
-    <div class="container">
-        <form class="form-signin" role="form" id="loginForm" action="action">
-            <h2 class="form-signin-heading">Please sign in</h2>
-            <input type="text" class="form-control" placeholder="Email address"
-            id="loginEmail" required autofocus>
-            <input type="password" class="form-control" placeholder="Password" id="loginPassword"
-            required>
-            <label class="checkbox">
-                <input type="checkbox" value="remember-me">Remember me</label>
-            <p>Not a member?
-                <a href="register"> Register here</a>
-            </p>
-            <button class="btn btn-lg btn-primary btn-block" type="submit" id="loginButton">Sign in</button>
-            <a href="#" id="fbLogin"><img src="fblogin.png" height="75%" width="75%"></a>
-        </form>
-        <br>
-        <br>
-        <div>
-            {{loginButtons}}
+    <div class="row">
+        <div class="main">
+            <p>Please Log In, or
+                <a href="#">Sign Up</a>
+                </>
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <button class="btn btn-lg btn-info btn-block" id="fbLogin">Facebook</button>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <button class="btn btn-lg btn-primary btn-block" id="googleLogin">Google</button>
+                    </div>
+                </div>
+                <div class="login-or">
+                    <hr class="hr-or">
+                    <span class="span-or">or</span>
+                </div>
+                <form role="form" id="loginForm" action="action">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="loginEmail" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <a class="pull-right" href="#"><small><strong>Forgot password?</strong></small></a>
+                        <input type="password" class="form-control" id="loginPassword" placeholder="Password">
+                    </div>
+                    <button type="submit" class="btn btn btn-primary" id="loginButton">Log In</button>
+                </form>
         </div>
     </div>
-    <!-- /container -->
 </template>

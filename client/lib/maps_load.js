@@ -1,35 +1,7 @@
 /* global Marker google  */
 gmaps = {
-
-
-    addMarker: function(Location) {
-
-        for (var i in Location) {
-            var lat = Location[i].lat;
-            var lng = Location[i].lng;
-            var addr = Location[i].address;
-            var latlng = new google.maps.LatLng(lat, lng);
-
-            // Add the marker
-            gMarker = new google.maps.Marker({
-                position: latlng,
-                map: this.map,
-                title: addr
-            });
-
-            // Create the infowindow for each marker
-            google.maps.event.addListener(gMarker, 'click', function() {
-                infoWindow.open(this.map, this);
-                infoWindow.setContent(this.title);
-                // Streetview testing
-
-            });
-
-
-        }
-    },
-
-
+    
+    // Initialises all map settings when page is loaded
     initialise: function() {
         console.log("[+] Intializing Google Maps...");
 
@@ -38,8 +10,9 @@ gmaps = {
             zoom: 4,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             styles: greenStyle
-        };
-        
+        },
+        autocomplete; // Google maps autocomplete
+
         // Set map global variables
         map = new google.maps.Map(document.getElementById("map-canvas"),
         mapOptions);
@@ -47,6 +20,17 @@ gmaps = {
         infoWindow = new google.maps.InfoWindow();
         geocoder = new google.maps.Geocoder();
 
+        // Create the autocomplete object, restricting the search
+        // to geographical location types.
+        autocomplete = new google.maps.places.Autocomplete(
+        /** @type {HTMLInputElement} */ (document.getElementById('autocomplete')), {
+            types: ['geocode']
+        });
+        // When the user selects an address from the dropdown,
+        // populate the address fields in the form.
+        google.maps.event.addListener(autocomplete, 'place_changed', function() {
+            place = autocomplete.getPlace();
+        });
         /* Check if browser supports geolocation then ask to add users current location
          to center of the map*/
         if (navigator.geolocation) {
@@ -59,5 +43,45 @@ gmaps = {
         }
 
         Session.set('map', true);
-    }
+    },
+    
+    // Add marker to the map
+    addMarker: function(Location) {
+
+        for (var i in Location) {
+            var lat = Location[i].lat;
+            var lng = Location[i].lng;
+            var addr = Location[i].address;
+            var latlng = new google.maps.LatLng(lat, lng);
+
+            // Add the marker
+            gMarker = new google.maps.Marker({
+                position: latlng,
+                map: map,
+                title: addr,
+            });
+
+            // Create the infowindow for each marker
+            google.maps.event.addListener(gMarker, 'click', function() {
+                infoWindow.open(this.map, this);
+                infoWindow.setContent(this.title);
+                // Streetview testing
+
+            });
+        }
+    },
+    
+    // Autocomplete function to geolocate the address given
+    geolocate: function() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var geolocation = new google.maps.LatLng(
+                position.coords.latitude, position.coords.longitude);
+                autocomplete.setBounds(new google.maps.LatLngBounds(geolocation,
+                geolocation));
+            });
+        }
+    },
+
+
 };

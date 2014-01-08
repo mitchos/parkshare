@@ -1,13 +1,22 @@
+/* global Parks Meteor _ */
+
 Parks = new Meteor.Collection('parks');
 
 
 Meteor.methods({
     park: function(parkAttributes) {
-
-        var user = Meteor.user(),
+        console.log('[-] Meteor Method(park): Running');
+        
+        var park,
+            parkId,
+            user = Meteor.user(),
+            owner = user.profile.firstName + " " + user.profile.lastName,
             parkWithSameAddress = Parks.findOne({
                 address: parkAttributes.address
             });
+            console.log(parkAttributes);
+            console.log('[-] Meteor Method(park): Variables set');
+            console.log(parkWithSameAddress);
 
         // ensure the user is logged in
         if (!user) throw new Meteor.Error(401, "You need to login or register to submit a new park");
@@ -22,16 +31,17 @@ Meteor.methods({
         }
 
         // pick out the whitelisted keys
-        var park = _.extend(_.pick(parkAttributes, 'address', 'lat', 'lng'), {
+            park = _.extend(_.pick(parkAttributes, 'address', 'lat', 'lng'), {
             userId: user._id,
-            owner: user.profile.name,
+            owner: owner,
             submitted: new Date().getTime()
         });
 
-        var parkId = Parks.insert(park);
+        parkId = Parks.insert(park);
 
         return parkId;
     },
+    
     deletePark: function(parkId) {
 
         var parkDeleted = Parks.remove(parkId);

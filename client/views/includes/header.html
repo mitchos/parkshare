@@ -1,33 +1,35 @@
 <template name="header">
-    <nav class="navbar navbar-inverse" role="navigation">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">ParkShare</span></a>
+    <div class="row">
+        <div class="col-lg-16">
+            <nav class="navbar navbar-inverse" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">ParkShare</span></a>
+                </div>
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="{{pathFor 'profile'}}">My Profile</a>
+                        </li>
+                        <li>
+                            <a href="#services">Services</a>
+                        </li>
+                        <li>
+                            <a href="#contact">Contact</a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">{{> userInfo}}</ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </nav>
         </div>
-        
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="{{pathFor 'profile'}}">My Profile</a>
-                </li>
-                <li>
-                    <a href="#services">Services</a>
-                </li>
-                <li>
-                    <a href="#contact">Contact</a>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">{{> userInfo}}</ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </nav>
+    </div>
 </template>
-
 <template name="userInfo">{{#if currentUser}} {{> user_loggedin}} {{else}} {{> user_loggedout}}
     {{/if}}</template>
 <template name="user_loggedin">{{#if loggingIn}}

@@ -1,17 +1,42 @@
 <template name="profileSummary">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-lg-12">
             <p>
                 <img class="img-rounded" src="{{currentUser.profile.picture}}">
             </p>
-            <p>Name: {{currentUser.profile.firstName}} {{currentUser.profile.lastName}}</p>
-            <p>Address: {{currentUser.profile.address}}</p>
+            <p>
+                <strong>Name:</strong>{{currentUser.profile.firstName}} {{currentUser.profile.lastName}}</p>
+            <p>
+                <strong>Address:</strong>{{currentUser.profile.address}}</p>
             <p>Phone Number: {{phNumber}}</p>
         </div>
-        <div class="col-md-4">
-            <button type="button" class="btn btn-success addService" data-service="facebook">Add Facebook</button>
-            <button type="button" class="btn btn-success addService" data-service="google">Add Google</button>
-            <button type="button" class="btn btn-success addService" data-service="email">Add Email</button>
-        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-4">{{#if currentUser.profile.fbPicture}}
+            <p>
+                <button type="button" class="btn btn-danger unlinkService" data-service="facebook">Unlink Facebook Account</button>
+            </p>{{else}}
+            <p>
+                <button type="button" class="btn btn-success linkService" data-service="facebook">Link Facebook Account</button>
+            </p>{{/if}} {{#if currentUser.profile.gPicture}}
+            <p>
+                <button type="button" class="btn btn-danger unlinkService" data-service="google">Unlink Google Account</button>
+            </p>{{else}}
+            <p>
+                <button type="button" class="btn btn-success linkService" data-service="google">Link Google Account</button>
+            </p>{{/if}}</div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-4">{{#if currentUser.profile.fbPicture}}
+            <p>
+                <img src="{{currentUser.profile.fbPicture}}" class="img-rounded" style="height: 64px;">
+                <strong>Facebook Profile</strong>
+            </p>{{/if}} {{#if currentUser.profile.gPicture}}
+            <p>
+                <img src="{{currentUser.profile.gPicture}}" class="img-rounded" style="height: 64px;">
+                <strong>Google Profile Picture</strong>
+            </p>{{/if}}</div>
     </div>
 </template>

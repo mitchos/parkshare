@@ -1,6 +1,5 @@
 {
   "packages": {
-    "bootstrap3-less": {},
     "iron-router": {},
     "spin": {},
     "npm": {}
