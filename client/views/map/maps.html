@@ -1,16 +1,6 @@
 <template name="maps">
     <div class="row">
-        <form class="form-horizontal" role="form" id="addPark" action="action">
-            <div class="col-md-4">
-                <div id="addParkField" class="form-group">
-                    <input type="text" class="form-control" id="addParkInput" placeholder="Enter Address">
-                </div>
-            </div>
-            <div class="col-md-2">
-                <button type="submit" class="btn btn-primary">Add Park</button>
-            </div>
-        </form>
-                <form class="form-horizontal" role="form" id="findPark" action="action">
+        <form class="form-horizontal" role="form" id="findPark" action="action">
             <div class="col-md-4">
                 <div id="findParkField" class="form-group">
                     <input type="text" class="form-control" id="findParkInput" placeholder="Enter Address">
@@ -22,17 +12,14 @@
         </form>
     </div>
     <div class="row">
-        <div class="col-lg-12">
-            <div id="map">
-            {{#constant}}
-                <div id="map-canvas"></div>
-            {{/constant}}    
-            </div>
+        <div class="col-lg-12" id="mapCanvasHolder">
+            <div id="map">{{#constant}}
+                <div id="map-canvas"></div>{{/constant}}</div>
         </div>
     </div>
     <div class="row">
-        <p>Number of parks
-            <span class="badge">{{parkCount}}</span>
-        </p>
-        <div class="col-lg-12">{{>recentParks}}</div>
-    </div>{{>parkForm}}</template>
+        <div class="col-lg-12" id="parkingResultsList">
+            <p>Number of parks
+                <span class="badge">{{parkCount}}</span>
+            </p>{{>recentParks}}</div>
+    </div></template>

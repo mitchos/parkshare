@@ -10,3 +10,12 @@
     width: 100%;
     height: 400px;
 }
+#parkingResultsList {
+    background-color: white;
+    padding: 30px;
+    margin-top:30px;
+}
+#mapCanvasHolder {
+    background-color: white;
+    padding: 30px;
+}
