@@ -10,7 +10,7 @@ Meteor.methods({
         var park,
             parkId,
             user = Meteor.user(),
-            owner = user.profile.firstName + " " + user.profile.lastName,
+            owner = user.profile.name,
             parkWithSameAddress = Parks.findOne({
                 address: parkAttributes.address
             });

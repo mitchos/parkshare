@@ -1,7 +1,9 @@
 <template name="parkItem">
-    <tr>
-        <td>{{address}}</td>
-        <td>{{owner}}</td>
-        <td><a href="{{pathFor 'parkPage'}}">Details</a></td>
-    </tr>
+    <li class="">
+        <div class="fui-location park-list-icon" ></div>
+        <div class="park-list-content">
+            <h4>
+                <a href="{{pathFor 'parkPage'}}" class=""> {{address}}</a>
+            </h4>{{owner}}</div>
+    </li>
 </template>

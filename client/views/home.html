@@ -1,12 +1,39 @@
 <template name="home">
     <div class="row">
         <div class="col-lg-12">
-            <h1>Welcome to ParkShare.</h1>
-            <p>You are now successfully logged in!</p>
+            <h1>Stop driving in circles.</h1>
+            <h4>We've got a parking spot for you right here.</h4>
         </div>
     </div>
+    <div class="row">{{>addPark}}</div>
     <div class="row">
-{{>addPark}}
+        <div class="col-lg-12">
+            <p>Every day, thousands of driveways and carparks go unused across Australia.
+                Parkora puts you in touch with awesome people that want to share the convenience
+                of their location with you.</p>
+        </div>
     </div>
-    <!-- /.container -->
+    <!--<div class="row">-->
+    <!--    <div class="col-lg-12">-->
+    <!--        <h5>Want to make money from your driveway or carpark?</h5>-->
+    <!--    </div>-->
+    <!--</div>-->
+    <!--<div class="row text-center">-->
+    <!--    <div class="col-md-4">-->
+    <!--    <span class="fui-user"></span>-->
+    <!--        <h5>Step 1</h5>-->
+    <!--        <p>Create an account with Parkora. You can sign-up using your email, Facebook or Google accounts.</p>-->
+    <!--    </div>-->
+    <!--    <div class="col-md-4">-->
+    <!--    <span class="fui-location"></span>-->
+    <!--        <h5>Step 2</h5>-->
+    <!--        <p>Add your carpark to Parkora and set the availability and price using our guidelines for your suburb.</p>-->
+    <!--    </div>-->
+        
+    <!--    <div class="col-md-4">-->
+    <!--    <span class="fui-check-inverted text-center"></span>-->
+    <!--        <h5 >Step 3</h5>-->
+    <!--        <p>Get paid. Parkora handles the entire transaction safely and securely.</p>-->
+    <!--    </div>-->
+    <!--</div>-->
 </template>
