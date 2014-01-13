@@ -9,6 +9,8 @@ Template.parkPage.rendered = function() {
             pitch: -5
         }
     };
+    var test = this._id;
+    console.log(test);
     var panorama = new google.maps.StreetViewPanorama(document.getElementById("sview-canvas"), panoramaOptions);
 
 };

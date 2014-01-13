@@ -7,13 +7,14 @@ Meteor.methods({
     park: function(parkAttributes) {
         console.log('[-] Meteor Method(park): Running');
         
-        var park,
-            parkId,
-            user = Meteor.user(),
-            owner = user.profile.name,
-            parkWithSameAddress = Parks.findOne({
+        var park, // Whitelisted object
+            parkId, // The returned object
+            user = Meteor.user(), // Clean way of getting Meteor user
+            owner = user.profile.name, // Full name of the park owner
+            parkWithSameAddress = Parks.findOne({ // Gets any park w/same addr
                 address: parkAttributes.address
             });
+            
             console.log(parkAttributes);
             console.log('[-] Meteor Method(park): Variables set');
             console.log(parkWithSameAddress);
@@ -31,12 +32,13 @@ Meteor.methods({
         }
 
         // pick out the whitelisted keys
-            park = _.extend(_.pick(parkAttributes, 'address', 'lat', 'lng'), {
+            park = _.extend(_.pick(parkAttributes, 'address', 'lat', 'lng', 'addressComponents'), {
             userId: user._id,
             owner: owner,
             submitted: new Date().getTime()
         });
-
+        
+        // Add the park to the database
         parkId = Parks.insert(park);
 
         return parkId;

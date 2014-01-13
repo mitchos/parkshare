@@ -1,4 +1,5 @@
-.park-list a:link {
+.park-list a:link,
+.park-list a:visited{
     color:white;
     font-size:18px;
 }
@@ -14,8 +15,8 @@
     line-height: 1.214;
     padding-left: 10px;
     position: relative;
-    transition: 0.25s;
-    -webkit-transition: 0.25s;
+    transition: 1.25s;
+    -webkit-transition: 1.25s;
     margin-bottom: 1px;
     padding-bottom:10px;
 }
