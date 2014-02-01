@@ -1,16 +1,5 @@
 <template name="maps">
-    <div class="row">
-        <form class="form-horizontal" role="form" id="findPark" action="action">
-            <div class="col-md-4">
-                <div id="findParkField" class="form-group">
-                    <input type="text" class="form-control" id="findParkInput" placeholder="Enter Address">
-                </div>
-            </div>
-            <div class="col-md-2">
-                <button type="submit" class="btn btn-primary">Find Park</button>
-            </div>
-        </form>
-    </div>
+{{>findPark}}
     <div class="row">
         <div class="col-lg-12" id="mapCanvasHolder">
             <div id="map">{{#constant}}

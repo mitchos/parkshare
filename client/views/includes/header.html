@@ -13,14 +13,14 @@
                 </div>
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav">
+                        <!--<li>-->
+                        <!--    <a href="{{pathFor 'profile'}}">My Profile</a>-->
+                        <!--</li>-->
                         <li>
-                            <a href="{{pathFor 'profile'}}">My Profile</a>
+                            <a href="{{pathFor 'allRecentParks'}}">All Parks</a>
                         </li>
                         <li>
-                            <a href="{{pathFor 'allRecentParks'}}">View Parks</a>
-                        </li>
-                        <li>
-                            <a href="#contact">Contact</a>
+                            <a href="{{pathFor 'parksByOwner'}}">My Parks</a>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">{{> userInfo}}</ul>

@@ -1,4 +1,4 @@
-/* global Marker google  */
+/* global Marker google map infoWindow  */
 gmaps = {
 
     // Initialises all map settings when page is loaded
@@ -18,7 +18,7 @@ gmaps = {
         mapOptions);
         this.map = map;
         infoWindow = new google.maps.InfoWindow();
-        geocoder = new google.maps.Geocoder();
+
 
         // Create the autocomplete object, restricting the search
         // to geographical location types.
@@ -78,10 +78,13 @@ gmaps = {
         }
     },
 
+    // Watches for autocomplete input boxes and adds the autocomplete event
+    // handler
     watchAutocomplete: function(input) {
         var autocomplete;
         autocomplete = new google.maps.places.Autocomplete(
-        /** @type {HTMLInputElement} */ (document.getElementById(input)), {
+        /** @type {HTMLInputElement} */
+        (document.getElementById(input)), {
             types: ['geocode']
         });
         google.maps.event.addListener(autocomplete, 'place_changed', function() {
@@ -89,5 +92,21 @@ gmaps = {
         });
 
         console.log(autocomplete);
+    },
+
+    // Geocodes any address supplied and returns results if geocode is OK
+    geoCode: function(address) {
+        geocoder = new google.maps.Geocoder();
+
+        geocoder.geocode({
+            'address': address
+        }, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                map.setCenter(results[0].geometry.location);
+                 map.setZoom(14);
+                
+            }
+        });
+        
     }
 };

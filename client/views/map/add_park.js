@@ -1,12 +1,17 @@
-Template.addPark.events({
+/* global Meteor gmaps Template place Router throwError google Session */
+Template.addParkForm.events({
+
+    // When input is selected, starts calculating the address
     'focus #addParkInput': function(e) {
         gmaps.watchAutocomplete('addParkInput');
     },
+
+    // When input is submitted, adds the park to the collection
     'submit #addPark': function(e) {
         e.preventDefault();
-        Router.go('/map');
+        Router.go('/parks');
         console.log("Running addPark events handler");
-        
+
         // Define the object to get address components from
         var addressComponents = {
             subpremise: 'short_name',
@@ -18,7 +23,7 @@ Template.addPark.events({
             postal_code: 'short_name'
         },
         parsedAddressComponents = {};
-        
+
         // Extracts each address component from the autocomplete address and then
         // reassigns these values to the addressComponents object
         function getAddressComponents() {
@@ -31,9 +36,9 @@ Template.addPark.events({
             }
             return parsedAddressComponents;
         }
-        
+
         getAddressComponents();
-        
+
         // Define the object that gets passed to the server side function 
         var park = {
             address: place.formatted_address,
@@ -41,7 +46,7 @@ Template.addPark.events({
             lng: place.geometry.location.lng(),
             addressComponents: parsedAddressComponents
         };
-        
+
         // Server side function checks and inserts parking parameters into the
         // collection
         Meteor.call('park', park, function(error, id) {
@@ -53,7 +58,7 @@ Template.addPark.events({
                 });
             }
             else {
-                Router.go('/map', {
+                Router.go('/parks', {
                     _id: id
                 });
             }
@@ -66,4 +71,34 @@ Template.addPark.events({
         autocomplete = null;
 
     }
+});
+
+Template.addPark.rendered = function() {
+
+
+    $("#slider").slider({
+        range: "$",
+        value: 5,
+        min: 1,
+        max: 20,
+        step: 0.5,
+        slide: function(event, ui) {
+            $("#amount").html("$" + ui.value);
+            Session.set("parkPrice", ui.value);
+        }
+    });
+    var value = $("#slider").slider("value");
+    Session.set("parkPrice", value);
+    $("#amount").html("$" + value);
+};
+
+Template.addPark.events({
+    'change #parkingType': function(e) {
+        var value = $("#parkingType").val();
+        Session.set("parkType", value);
+    }
+});
+
+Handlebars.registerHelper('session', function(input) {
+    return Session.get(input);
 });

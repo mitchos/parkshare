@@ -1,4 +1,4 @@
-/* global google Template Session Deps Parks infowindow*/
+/* global google Template Session Deps Parks infowindow gmaps*/
 
 Template.maps.rendered = function() {
 
@@ -8,9 +8,23 @@ Template.maps.rendered = function() {
     // Autorun function to render all points in the Parks collection on the map
     Deps.autorun(function() {
         console.log('[+] Fetching locations');
-        var Location = Parks.find().fetch();
-        gmaps.addMarker(Location);
+        
+        var Location;
 
+        if (Router.current().params.suburb) {
+            var suburb = Router.current().params.suburb;
+           gmaps.geoCode(suburb);
+            Location = Parks.find({
+                'addressComponents.locality': suburb
+            }).fetch();
+            
+        }
+        else {
+            Location = Parks.find().fetch();
+        }
+        gmaps.addMarker(Location);
+        
+        
     });
 };
 
@@ -36,5 +50,5 @@ Template.maps.events({
     'focus #findParkInput': function(e) {
         gmaps.watchAutocomplete('findParkInput');
     },
-    
+
 });

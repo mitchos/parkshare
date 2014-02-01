@@ -1,14 +1,14 @@
 <template name="register">
   <div class="container">
-    <form class="form-signin" role="form" id="registerForm" action="action">
+    <form class="form-signin" role="form" id="registerForm" action="action" parsley-validate>
       <h2 class="form-signin-heading">Register</h2>
       <p>Please complete the form below to join ParkShare</p>
       <input type="text" class="form-control" placeholder="First Name" id="firstName" autofocus>
       <input type="text" class="form-control" placeholder="Last Name" id="lastName">
-      <input type="email" class="form-control" placeholder="Email address" id="email" required >
+      <input type="email" class="form-control" placeholder="Email address" id="email" parsley-required="true" parsley-type="email" parsley-trigger="change">
       <div class="form-group">
-        <input type="password" class="form-control" placeholder="Password" id="password" required>
-        <input type="password" class="form-control" placeholder="Confirm Password" id="passwordConfirm" required>
+        <input type="password" class="form-control" placeholder="Password" id="password"  parsley-required="true" parsley-validation-minlength="8" parsley-type="alphanum" parsley-trigger="change">
+        <input type="password" class="form-control" placeholder="Confirm Password" id="passwordConfirm" parsley-required="true" parsley-validation-minlength="8" parsley-equalto="#password" parsley-trigger="change">
       </div>
       <button id="createAccount" class="btn btn-lg btn-success btn-block" type="submit">Register</button>
     </form>
